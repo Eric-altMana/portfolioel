@@ -1,9 +1,8 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Code, Heart, Coffee, Music, Camera, Gamepad2, Mail, Github, Linkedin } from "lucide-react";
+import { Code, Heart, Coffee, Music, Camera, Gamepad2, Mail, Github, Linkedin, ExternalLink, Calendar } from "lucide-react";
 
 const Index = () => {
   const passions = [
@@ -16,6 +15,33 @@ const Index = () => {
 
   const skills = [
     "React", "TypeScript", "Tailwind CSS", "Next.js", "Vue.js", "JavaScript", "HTML/CSS", "Node.js"
+  ];
+
+  const projects = [
+    {
+      title: "E-commerce React",
+      description: "Application de commerce électronique complète avec panier, paiement et gestion des commandes",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Stripe"],
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop",
+      date: "2024",
+      link: "#"
+    },
+    {
+      title: "Dashboard Analytics", 
+      description: "Tableau de bord interactif pour visualiser des données avec graphiques et métriques en temps réel",
+      technologies: ["Vue.js", "Chart.js", "API REST", "CSS3"],
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=250&fit=crop",
+      date: "2024",
+      link: "#"
+    },
+    {
+      title: "Portfolio Personnel",
+      description: "Site portfolio responsive showcasing mes projets avec animations et design moderne",
+      technologies: ["Next.js", "Framer Motion", "Tailwind", "MDX"],
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop",
+      date: "2024",
+      link: "#"
+    }
   ];
 
   return (
@@ -74,6 +100,65 @@ const Index = () => {
                 {skill}
               </Badge>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-4">Projets Réalisés</h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Découvrez quelques-uns de mes projets récents qui illustrent mes compétences et ma passion pour le développement frontend
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 right-4">
+                    <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
+                      {project.date}
+                    </Badge>
+                  </div>
+                </div>
+                
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <CardTitle className="text-xl">{project.title}</CardTitle>
+                    <Button variant="ghost" size="icon" className="opacity-70 hover:opacity-100">
+                      <ExternalLink className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardHeader>
+                
+                <CardContent className="space-y-4">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-1">
+                    {project.technologies.map((tech) => (
+                      <Badge key={tech} variant="outline" className="text-xs">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button variant="outline" className="gap-2">
+              <Github className="w-4 h-4" />
+              Voir tous mes projets sur GitHub
+            </Button>
           </div>
         </div>
       </section>
